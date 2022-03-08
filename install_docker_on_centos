@@ -1,0 +1,21 @@
+#安裝Docker(在CENTOS上)
+
+#安裝yum管理工具套件
+sudo yum install -y yum-utils
+#透過yum管理工具導入docker的repo來源
+sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+
+#安裝docker主程式及所需套件
+sudo yum install docker-ce docker-ce-cli containerd.io -y
+#啟動docker
+sudo systemctl start docker
+#自動常駐/啟動docker
+sudo systemctl enable docker
+#檢查docker是否啟用並常駐
+sudo systemctl status docker
+#將當前使用者加入docker群組
+sudo usermod -aG docker $USER
+#登出目前使用者，再次登入即可使用docker
+exit
